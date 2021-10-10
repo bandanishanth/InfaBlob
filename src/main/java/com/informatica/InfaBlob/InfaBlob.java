@@ -1,6 +1,7 @@
 package com.informatica.InfaBlob;
 
 import com.azure.storage.blob.*;
+import com.azure.storage.blob.models.BlobItem;
 import com.azure.storage.common.StorageSharedKeyCredential;
 
 import java.io.*;
@@ -16,6 +17,17 @@ public class InfaBlob
         DownloadBlob downloadBlob = new DownloadBlob(blobClient);
         downloadBlob.download(localPathWithFileName);
     }
+
+    private static void upload(String blobUploadPathWithName, String localPathWithFileName, BlobContainerClient containerClient)
+    {
+        //Get a Blob Client with the BlobPathAndName
+        BlobClient blobClient = containerClient.getBlobClient(blobUploadPathWithName);
+
+        UploadBlob uploadBlob = new UploadBlob(blobClient);
+
+        uploadBlob.upload(localPathWithFileName);
+    }
+
     public static void main(String[] args) throws IOException {
         if (args.length != 4)
         {
@@ -47,10 +59,40 @@ public class InfaBlob
                 String blobFileNameWithPath = scanner.nextLine();
 
                 //The name and location of the local file created after downloading the blob
-                System.out.println("Enter Local File Name to download blob with it's path:");
+                System.out.println("Enter Local File Name to download blob with it's path: ");
                 String localPathWithFileName = scanner.nextLine();
 
                 download(blobFileNameWithPath,localPathWithFileName,containerClient);
+            }
+
+            else if (action.equalsIgnoreCase("upload"))
+            {
+                Scanner scanner = new Scanner(System.in);
+
+                //Path inside blob where we want to upload the file
+                System.out.println("Enter Path in Container with File Name for Upload: ");
+                String blobUploadPathWithName = scanner.nextLine();
+
+                //Local File Path and Name to Upload
+                System.out.println("Enter Local File's Name and Path to be uploaded to Blob: ");
+                String localPathWithFileName = scanner.nextLine();
+
+                upload(blobUploadPathWithName, localPathWithFileName, containerClient);
+            }
+
+            else if(action.equalsIgnoreCase("list"))
+            {
+                System.out.println("Listing Blobs in container " + containerName + ":");
+
+                for(BlobItem blobItem : containerClient.listBlobs())
+                {
+                    System.out.println(blobItem.getName());
+                }
+            }
+
+            else
+            {
+                System.out.println("Invalid Action");
             }
         }
     }
