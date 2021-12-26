@@ -1,10 +1,10 @@
-##INFA BLOB
+## INFA BLOB
 
 This is a command line based test case to connect to an Azure Blob Container
 
 The utility is a simple JAR file containing the required dependencies
 
-####Usage
+#### Usage
 
 The tool can be invoked via command line as follows:
 
@@ -34,7 +34,7 @@ Similar to the above but just give the full path of where you want the file in y
 
 Example: If you want the file to be downloaded in the folder *C:\TEST* with the name *foo.txt* the value to give for the above would be *C:\TEST\foo.txt*
 
-####Proxy Options
+#### Proxy Options
 
 To make use of a proxy with this JAR, simply set the following proxy flags when invoking the utility with Java
 
