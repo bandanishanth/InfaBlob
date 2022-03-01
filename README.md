@@ -21,9 +21,9 @@ There are two ways to Authenticate with Azure Blob:
 1. Using the Account Key / Shared Account Key
 2. Using a SAS (Shared Access Signature) Token - Enter the SAS Token without the '?' at the beginning
 
-Example : If the SAS Token is that Azure Gives from the Azure Cloud Console is : "?sv=2020-08-04<Remaining Value>"
+Example : If the SAS Token is that Azure Gives from the Azure Cloud Console is : "?sv=2020-08-04..."
 
-Then the value to be provided as input is : "sv=2020-08-04<Remaining Value>"  
+Then the value to be provided as input is : "sv=2020-08-04..."  
 
 
 
