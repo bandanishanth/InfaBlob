@@ -2,8 +2,6 @@ package com.informatica.InfaBlob;
 
 import com.azure.storage.blob.*;
 import com.azure.storage.blob.models.BlobItem;
-import com.azure.storage.common.StorageSharedKeyCredential;
-
 import java.io.*;
 import java.util.Locale;
 import java.util.Scanner;
@@ -29,23 +27,45 @@ public class InfaBlob
     }
 
     public static void main(String[] args) throws IOException {
-        if (args.length != 4)
+        if (args.length != 3)
         {
-            System.out.println("Usage is java -jar <JarName> accountName accountKey containerName action");
+            System.out.println("Usage is java -jar <JarName> accountName containerName action");
         }
         else
         {
             String accountName = args[0];
-            String accountKey = args[1];
-            String containerName = args[2];
-            String action = args[3];
+            String containerName = args[1];
+            String action = args[2];
 
-            StorageSharedKeyCredential credential = new StorageSharedKeyCredential(accountName, accountKey);
+            Authenticate authenticate = new Authenticate(accountName);
 
-            String endpoint = String.format(Locale.ROOT, "https://%s.blob.core.windows.net", accountName);
+            BlobServiceClient blobServiceClient;
 
-            // Create a BlobServiceClient object which will be used to create a container client
-            BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().endpoint(endpoint).credential(credential).buildClient();
+            System.out.println("Select the Authentication Method you want to use for Azure by entering the corresponding number:");
+
+            System.out.println("1. Authentication using Shared Key");
+            System.out.println("2. Authentication using SAS Token");
+
+            Scanner authScanner = new Scanner(System.in);
+
+            int authOption = authScanner.nextInt();
+
+            if(authOption==1)
+            {
+                System.out.println("Enter Account Key:");
+
+                String accountKey = authScanner.nextLine();
+
+                blobServiceClient = authenticate.accountKeyAuth(accountKey);
+            }
+            else
+            {
+                System.out.println("Enter the SAS Token without the '?' at the beginning:");
+
+                String sasToken = authScanner.nextLine();
+
+                blobServiceClient = authenticate.sasTokenAuth(sasToken);
+            }
 
             // Get a container client object to work with the blob container
             BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
