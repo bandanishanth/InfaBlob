@@ -9,7 +9,7 @@ The utility is a simple JAR file containing the required dependencies
 The tool can be invoked via command line as follows:
 
 ```
-java -jar InfaBlob-jar-with-dependencies.jar AZURE_ACCOUNT_NAME CONTAINER NAME OPERATION
+java -jar InfaBlob-jar-with-dependencies.jar AZURE_ACCOUNT_NAME CONTAINER_NAME OPERATION
 ```
 
 ### Authentication
