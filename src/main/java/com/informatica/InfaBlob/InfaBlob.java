@@ -45,14 +45,15 @@ public class InfaBlob
 
             System.out.println("1. Authentication using Shared Key");
             System.out.println("2. Authentication using SAS Token");
+            System.out.print("Option: ");
 
             Scanner authScanner = new Scanner(System.in);
 
-            int authOption = authScanner.nextInt();
+            int authOption = Integer.parseInt(authScanner.nextLine());
 
             if(authOption==1)
             {
-                System.out.println("Enter Account Key:");
+                System.out.print("Enter Account Key:");
 
                 String accountKey = authScanner.nextLine();
 
@@ -60,7 +61,7 @@ public class InfaBlob
             }
             else
             {
-                System.out.println("Enter the SAS Token without the '?' at the beginning:");
+                System.out.print("Enter the SAS Token without the '?' at the beginning:");
 
                 String sasToken = authScanner.nextLine();
 

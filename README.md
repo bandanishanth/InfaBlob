@@ -9,8 +9,25 @@ The utility is a simple JAR file containing the required dependencies
 The tool can be invoked via command line as follows:
 
 ```
-java -jar InfaBlob-jar-with-dependencies.jar AZURE_ACCOUNT_NAME ACCOUNT_KEY CONTAINER NAME OPERATION
+java -jar InfaBlob-jar-with-dependencies.jar AZURE_ACCOUNT_NAME CONTAINER NAME OPERATION
 ```
+
+### Authentication
+
+Prior to invoking any of the operations one needs to provide the credentials to allow the utility to successfully connect to Azure Blob
+
+There are two ways to Authenticate with Azure Blob:
+
+1. Using the Account Key / Shared Account Key
+2. Using a SAS (Shared Access Signature) Token - Enter the SAS Token without the '?' at the beginning
+
+Example : If the SAS Token is that Azure Gives from the Azure Cloud Console is : "?sv=2020-08-04<Remaining Value>"
+
+Then the value to be provided as input is : "sv=2020-08-04<Remaining Value>"  
+
+
+
+
 
 The operation option can be the following options:
 
