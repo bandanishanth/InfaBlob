@@ -3,7 +3,6 @@ package com.informatica.InfaBlob;
 import com.azure.storage.blob.*;
 import com.azure.storage.blob.models.BlobItem;
 import java.io.*;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class InfaBlob
