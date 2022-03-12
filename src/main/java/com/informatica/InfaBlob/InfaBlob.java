@@ -29,7 +29,7 @@ public class InfaBlob
     public static void main(String[] args) throws IOException {
         if (args.length != 3)
         {
-            System.out.println("Usage is java -jar <JarName> accountName containerName action");
+            System.out.println("Usage is java -jar <JarName> accountName containerName <list|upload|download>");
         }
         else
         {
@@ -76,11 +76,11 @@ public class InfaBlob
                 Scanner scanner = new Scanner(System.in);
 
                 //A particular file in a particular path in Azure Blob to Download
-                System.out.println("Enter Blob Name with Path: ");
+                System.out.println("Enter Blob Name in Azure with it's Path: ");
                 String blobFileNameWithPath = scanner.nextLine();
 
                 //The name and location of the local file created after downloading the blob
-                System.out.println("Enter Local File Name to download blob with it's path: ");
+                System.out.println("Enter the name you want the file to be downloaded as locally with it's full path: ");
                 String localPathWithFileName = scanner.nextLine();
 
                 download(blobFileNameWithPath,localPathWithFileName,containerClient);
@@ -91,7 +91,7 @@ public class InfaBlob
                 Scanner scanner = new Scanner(System.in);
 
                 //Path inside blob where we want to upload the file
-                System.out.println("Enter Path in Container with File Name for Upload: ");
+                System.out.println("Enter Full Path in Azure Container with File Name desired for Upload: ");
                 String blobUploadPathWithName = scanner.nextLine();
 
                 //Local File Path and Name to Upload
